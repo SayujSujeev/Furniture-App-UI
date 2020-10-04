@@ -10,7 +10,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text('Welcome',style: TextStyle(
+        child: Text('Hello Welcome ',style: TextStyle(
           fontSize: 30.0,
           fontWeight: FontWeight.bold,
         ),),
