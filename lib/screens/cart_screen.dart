@@ -298,7 +298,7 @@ class _CartScreenState extends State<CartScreen> {
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black54,
-                        offset: Offset(0, 2),
+                        offset: Offset(0, 2.0),
                         blurRadius: 30.0,
                       )
                     ]),
