@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:furniture_app_ui/custom_icons/custom_icons_icons.dart';
 import 'package:furniture_app_ui/data/data.dart';
@@ -14,159 +15,177 @@ class _CartScreenState extends State<CartScreen> {
   _buildCartItem(Cart cart) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 25.0),
-      child: Container(
-        height: 100.0,
-        width: double.infinity,
-        decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(35.0),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black26,
-                offset: Offset(0, 2),
-                blurRadius: 20.0,
-              )
-            ]),
-        child: Stack(
-          alignment: Alignment.centerLeft,
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  margin: EdgeInsets.all(5.0),
-                  width: 100.0,
-                  height: 94.0,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30.0),
-                      bottomLeft: Radius.circular(30.0),
-                    ),
-                    color: cart.chair.backgorundColor,
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 10.0),
-                    child: Image(
-                      height: 200.0,
-                      width: 200.0,
-                      image: AssetImage(cart.chair.imageUrl),
-                      fit: BoxFit.fitHeight,
-                    ),
-                  ),
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: 140.0,
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 4.0, top: 15.0),
-                        child: Text(
-                          cart.chair.name,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18.0,
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        Column(
-                          children: [
-                            Container(
-                              width: 140.0,
-                              child: Padding(
-                                padding: EdgeInsets.only(left: 4.0),
-                                child: Text(
-                                  cart.chair.color,
-                                  style: TextStyle(
-                                      color: Colors.black26, fontSize: 13.0),
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                            ),
-                            Container(
-                              width: 140.0,
-                              child: Padding(
-                                padding: EdgeInsets.only(left: 4.0),
-                                child: Text(
-                                  cart.chair.type,
-                                  style: TextStyle(
-                                    color: Colors.black26,
-                                    fontSize: 12.0,
-                                  ),
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Container(
-                              height: 20.0,
-                              width: 20.0,
-                              decoration: BoxDecoration(
-                                color: Theme.of(context).primaryColor,
-                                borderRadius: BorderRadius.circular(5.0),
-                              ),
-                              child: Center(
-                                child: Icon(
-                                  FontAwesomeIcons.plus,
-                                  color: Colors.white,
-                                  size: 12.0,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 10.0),
-                              child: Text(
-                                cart.quantity.toString(),
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                            Container(
-                              height: 20.0,
-                              width: 20.0,
-                              decoration: BoxDecoration(
-                                color: Theme.of(context).primaryColor,
-                                borderRadius: BorderRadius.circular(5.0),
-                              ),
-                              child: Center(
-                                child: Icon(
-                                  FontAwesomeIcons.minus,
-                                  color: Colors.white,
-                                  size: 12.0,
-                                ),
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                    Container(
-                      width: 140.0,
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 4.0),
-                        child: Text(
-                          '\$' + cart.chair.price.toString(),
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18.0,
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    )
-                  ],
-                )
-              ],
+      child: Slidable(
+        actionPane: SlidableDrawerActionPane(),
+        actionExtentRatio: 0.25,
+        secondaryActions: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Container(
+              width: 25,
+              height: 100,
+              decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.circular(20)
+              ),
+              child: Icon(Icons.delete,color: Colors.white,),
             ),
-          ],
+          )
+        ],
+        child: Container(
+          height: 100.0,
+          width: double.infinity,
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(35.0),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black26,
+                  offset: Offset(0, 2),
+                  blurRadius: 20.0,
+                )
+              ]),
+          child: Stack(
+            alignment: Alignment.centerLeft,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    margin: EdgeInsets.all(5.0),
+                    width: 100.0,
+                    height: 94.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(30.0),
+                        bottomLeft: Radius.circular(30.0),
+                      ),
+                      color: cart.chair.backgorundColor,
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 10.0),
+                      child: Image(
+                        height: 200.0,
+                        width: 200.0,
+                        image: AssetImage(cart.chair.imageUrl),
+                        fit: BoxFit.fitHeight,
+                      ),
+                    ),
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: 140.0,
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 4.0, top: 15.0),
+                          child: Text(
+                            cart.chair.name,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18.0,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          Column(
+                            children: [
+                              Container(
+                                width: 140.0,
+                                child: Padding(
+                                  padding: EdgeInsets.only(left: 4.0),
+                                  child: Text(
+                                    cart.chair.color,
+                                    style: TextStyle(
+                                        color: Colors.black26, fontSize: 13.0),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                width: 140.0,
+                                child: Padding(
+                                  padding: EdgeInsets.only(left: 4.0),
+                                  child: Text(
+                                    cart.chair.type,
+                                    style: TextStyle(
+                                      color: Colors.black26,
+                                      fontSize: 12.0,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Container(
+                                height: 20.0,
+                                width: 20.0,
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).primaryColor,
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                                child: Center(
+                                  child: Icon(
+                                    FontAwesomeIcons.plus,
+                                    color: Colors.white,
+                                    size: 12.0,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                child: Text(
+                                  cart.quantity.toString(),
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                height: 20.0,
+                                width: 20.0,
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).primaryColor,
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                                child: Center(
+                                  child: Icon(
+                                    FontAwesomeIcons.minus,
+                                    color: Colors.white,
+                                    size: 12.0,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                      Container(
+                        width: 140.0,
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 4.0),
+                          child: Text(
+                            '\$' + cart.chair.price.toString(),
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18.0,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
